@@ -1,0 +1,809 @@
+* {
+    font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+    background-color: #fffefe;
+}
+main {
+    height: 90%;
+    width: 100%;
+}
+.parent{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.child1{
+    width: 20%;
+    height: 100%;
+   background-color: #042331;
+   padding: 2%;
+    
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.assign-button,.edit-button {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;  margin-right: 5%; 
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+img{
+
+    width: 20%;
+    height: 20%;
+}
+.child1 .Heading {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.child1 .Heading i {
+    margin-right: 10px;
+}
+
+.child1 div {
+    margin-bottom: 10px;
+}
+
+.userbutton, .groupbutton, .rolebutton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #042331;
+    color: #fff;
+    border: none;
+    border-radius: 3%;
+    padding: 5%;
+    width: 100%;
+    font-size: large;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none; 
+}
+
+.userbutton i, .groupbutton i, .rolebutton i {
+    margin-right: 8px; 
+}
+
+
+
+.userbutton.active, .groupbutton.active, .rolebutton.active {
+    background-color: #040708;
+    transform: scale(1.05); 
+}
+.section-content {
+    display: none;
+}
+.section-content.active {
+    display: block;
+}
+
+.child2 {
+    width: 80%;
+    padding: 1%;
+    background-color: #fdfdfd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+#userManagement{
+    height: 100%;
+}
+.TitleForThePage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8%;
+    ; border-radius: 20px;
+}
+.Title,.roleTitle,.roleToUserTitle{
+    margin-top: 2%;
+    height: 6%;
+    display: flex;
+    justify-content:space-between;
+    align-items: center; 
+    border-radius: 20px;
+}
+.Message{
+    height: 5%;
+}
+
+.listTitle,.grouplistTitle{
+    width: 35%;
+    padding-left: 3%;
+}
+.adduser,.createButton {
+    width: 65%;
+    padding-right: 3%;
+    display: flex;
+    justify-content: end;
+}
+.addUserButton,.createGroupButton{
+    border-radius: 15px;
+    border: none;
+    padding: 2%;
+    background-color:#15668b ;
+    color: #ffffff;
+    font-weight: bolder;
+}
+.Message p{
+    font-size: larger;
+    padding: 1%;
+    text-align: center;
+}
+.roleTable {
+    width: 100%;
+    padding-right: 5%;
+    padding-left: 5%;
+    height: 30%;
+}
+.AddUserTableDiv {
+    width: 100%;
+    padding-right: 3%;
+    padding-left: 3%;
+}
+.roleToUserTable {
+    margin-top: 3%;
+}
+.buttonContainer {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+  
+}
+.assignToUser, .assignToGroup{
+    width: 50%; height: 100%;
+
+}
+#openAssignToUserModal,#openAssignToGroupModal{
+    border-radius: 15px;
+    border: none;
+    padding: 5%;
+    background-color: #26c576;
+}
+.roleTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.SearchRole, .addrole{
+    width: 30%;
+    display: flex;
+    justify-content: end;
+    margin: 2%; 
+}
+.SearchRole {
+    position: relative;
+    border: none; width: 20%;  
+}
+#searchRole {    border-radius: 20px;
+    width: 100%; 
+    padding: 5px 5px 5px 25px; 
+    box-sizing: border-box;
+}
+.SearchRole i {
+    position: absolute;
+    top: 50%;
+    left: 10px; 
+    transform: translateY(-50%);
+    color: #aaa;
+    pointer-events: none;
+}
+
+.addroleButton {
+    border-radius: 15px;
+    border: none;
+    padding: 2%;
+    background-color: #26c576;
+}
+
+
+/*MODAL FOR ADD FORM*/
+#addUserModal,#addgroupModal,#addRoleModal,.AssignRoleToGroup,.AssignRoleToUsers,#assignGroupModal,#removeGroupModal{
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content{
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+
+    border-radius: 5px;
+    position: relative;
+}
+.delete-button i, .edit-button i{
+    padding-right: 10px;
+} 
+#formTitle {
+    height: 7%;
+    width: 100%;
+    display: flex; /* Adjust to space-between to position items on opposite ends */
+}
+h3 {
+    width: 100%;
+    text-align: center;
+}
+
+.close-button {
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+    /* Remove float and position properties */
+}
+
+
+#AddFormTitle {
+    font-size: 20px;
+    margin-left: 8px; 
+}
+.errorMessage {
+    height: 5%; 
+    margin-bottom: 2%; 
+}
+
+form#addUserForm {
+    height: 83%;
+}
+.errorMessage p {
+    color: red;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.5;
+}
+.formelements {
+    height: 15%;
+    margin-bottom: 15px;
+    text-align: left;
+}
+.formlabel {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+.forminput input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.formButton {
+    text-align: center;
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.formButton button:hover {
+    background-color: #219e5e;
+}
+/*MODAL FOR CREATE GROUP*/
+
+.group-modal-content {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    border-radius: 5px;
+    position: relative;
+}
+form#addGroupForm {
+    height: 67%;
+}
+.FormContent {
+    height: 100%;
+}
+.formTitleForGroup {
+    height: 15%;
+}
+.groupAssign-modal-content{
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #888;
+    height: 30%;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.groupRemove-modal-content{
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 5px;
+    position: relative;
+}
+
+
+.formTitle, .formTitleForDelete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close-button-for-Assign, .close-button-for-Remove {
+    font-size: 1.5em;
+    color: #333;
+    cursor: pointer;
+}
+
+.close-button-for-Assign:hover, .close-button-for-Remove:hover {
+    color: #f00;
+}
+
+.formTitle h2, .formTitleForDelete h2 {
+    margin: 0;
+}
+
+
+
+.formlabelGroup, .selectForDelete {
+    margin-bottom: 10px;
+}
+
+.assignnFormInput select {
+    width: 100%;
+    height: 100px;
+}
+
+.assignformButton, .removeformButton {
+    text-align: center;
+}
+
+.assignUsers, .removeUsers {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.assignUsers:hover, .removeUsers:hover {
+    background-color: #0056b3;
+}
+.close-button-for-Assign, .close-button-for-Remove {
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+}
+
+
+
+
+
+#titleGroup {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+.close-button-for-AddGroup {
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+}
+
+.errorMessageForGroup,.errorMsgForroleForm {
+    height: 8%; 
+    margin-bottom: 2%; 
+}
+
+.errorMessageForGroup p {
+    color: red;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.formelementsforAddGroup {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.formlabelGroup {
+    margin-bottom: 5%;
+    font-size: 14px;
+    color: #555;
+}
+
+.forminputforAddGroup input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.forminputforAddGroup {
+    height: 20%;
+}
+
+.formButton button {
+    padding: 10px 20px;
+    width: 40%;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+#resetForm{
+  
+    background-color: #e0e0e0;
+}
+#resetFormButton {
+    background-color: #ccc;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+
+
+.formButton button:hover {
+    background-color: #219e5e;
+}
+.roleCreateButtons{
+    display: flex;
+    justify-content: space-between;
+    height: 10%;
+    width: 100%;
+}
+
+/*ADD ROLE MODAL*/
+.modal-content-ForAddRole{
+    background-color: #f4f4f4;
+    padding: 20px;
+    width: 30%;
+
+    border-radius: 5px;
+    position: relative;
+}
+.close-button-for-AddRole {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #888;
+}
+
+.formTitleForAddRole {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.formTitleForAddRole h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.errorMsgForroleForm {
+    height: 10%;
+    margin-bottom: 10px;
+    color: red;
+    display: flex;
+    align-items: center;
+}
+
+#addRoleForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 1em;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+#createRoleButton {
+    width: 40%;
+    background-color: #26c576;
+    color: white;
+    margin-right: 10px;  
+    padding: 0.7em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+#resetRoleButton {
+    width: 40%;
+    background-color: #ccc;
+    color: black;
+    padding: 0.7em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+}
+/*ASSIGN ROLE TO USERS*/
+.AssignRoleToUsersModal,
+.AssignRoleToGroupModal {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #888;
+    height: 350px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 5px;
+    position: relative;
+}
+#assignRoleButton{
+    width: 
+    100%;
+}
+.AssignRole {
+    width: 100%;
+}
+.AssignRoleToUsers {
+    display: none;
+}
+
+.AssignRoleToGroup {
+    display: none;
+}
+
+.AssignRoleToUsersTitle,
+.AssignRoleToGroupTitle {
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.closeButtonForAssignRoleToUser,
+.closeButtonForAssignRoleToGroup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.closefor-AssignRoleToUser,
+#closebntforAssignRoleToGroup {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+}
+
+.closefor-AssignRoleToUser:hover,
+#closebntforAssignRoleToGroup:hover {
+    color: #000;
+}
+
+.roleForUser,
+.roleForGroup {
+    margin-bottom: 15px;
+}
+
+.roleForUser label,.userForRole label,
+.roleForGroup label,.GroupForRole label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4%;
+}
+
+#selectRoleForUser,
+#selectUserForRole,
+#selectRoleForGroup,
+#selectGroupForRole {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.assignRoleButtons,
+.assignRoleGroupButtons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+select option:checked {
+    background-color: blue; /* Ensure the selected option text color is blue */
+}
+select:focus {
+    background-color: blue; /* Change text color to blue when focused */
+}
+
+.AssignRole button,
+.AssignGroup button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    background-color: #26c576;
+}
+
+.AssignRole button:hover,
+.AssignGroup button:hover {
+    background-color: #1a9d59;
+}
+
+button[type="submit"] {
+    background-color: #005eff;
+}
+
+button[type="submit"]:hover {
+    background-color: #0044cc;
+}
+
+
+/*CONFIRMATION MODAL*/
+#confirmationModal {
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContentForConfirmation {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+
+    text-align: center;
+    border-radius: 5px;
+    position: relative;
+}
+
+#modalText {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 50%; 
+}
+
+#confirmButton,
+#cancelButton {
+    background-color: #26c576; 
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+#confirmButton:hover {
+    background-color: #1a9d59; 
+}
+
+#cancelButton {
+    background-color: #f44336; 
+}
+
+#cancelButton:hover {
+    background-color: #d32f2f; 
+}
+
+h2 {
+    margin: 0; 
+   color:  #042331;
+}
+thead {
+  position: sticky;
+    top: 0%;
+}
+
+#usersTable th, #usersTable td {
+    padding: 12px;
+
+    text-align: left;
+}
+#usersTable tbody tr{
+    border-bottom: 1px solid rgb(158, 151, 151) ;
+}
+
+#usersTable th {
+    background-color: #0c4a69;
+    color: #ffffff;
+}
+#usersTable{
+    border-collapse: collapse;
+}
+
+#usersTable td {
+    background-color: #fff;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {color: #ffffff;
+    background-color: #0c4a69;
+}
+
+td {
+    background-color: #fff;
+}
+
+
+
+
+
+
+
